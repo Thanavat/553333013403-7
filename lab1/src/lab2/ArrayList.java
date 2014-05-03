@@ -2,7 +2,7 @@ package lab2;
 
 public class ArrayList {
 	private Object sumdata[] = new Object[1];
-	private int from = 0;
+	public int from = 0;
 
 	public void add(Object obj) {
 		add(from, obj);
@@ -19,8 +19,7 @@ public class ArrayList {
 
 	public void ensureCapacity(int capacity) {
 		if (capacity > sumdata.length) {
-			int s = 2 * sumdata.length;
-			Object[] arr = new Object[s];
+			Object[] arr = new Object[sumdata.length*2];
 			for (int i = 0; i < from; i++) {
 				arr[i] = sumdata[i];
 			}
@@ -28,12 +27,12 @@ public class ArrayList {
 		}
 	}
 
-	public void remove(int i) {
-		for (int j = i; j < from - 1; j++) {
+	public Object[] remove(int i) {
+		for (int j = i; j < from; j++) {
 			sumdata[j] = sumdata[j + 1];
 		}
-		sumdata[from - 1] = null;
-
+		from--;
+		return sumdata;
 	}
 
 	public void addFirst(Object obj) {
@@ -43,13 +42,16 @@ public class ArrayList {
 	public void addLast(Object obj) {
 		add(from, obj);
 	}
-
-	public static void main(String[] args) {
-		ArrayList num = new ArrayList();
-		num.add("111");
-		num.add("222");
-		System.out.println(num);
-
+//
+//	public static void main(String[] args) {
+//		ArrayList num = new ArrayList();
+//		num.add("111");
+//		num.add("222");
+//		System.out.println(num);
+//
+//	}
+	public Object get(int i){
+		return sumdata[i];
 	}
 
 	public String toString() {
